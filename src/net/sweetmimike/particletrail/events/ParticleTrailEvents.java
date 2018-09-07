@@ -64,7 +64,7 @@ public class ParticleTrailEvents implements Listener {
 
 	@EventHandler
 	public void onMove(PlayerMoveEvent e) {
-		Player p = (Player) e.getPlayer();
+		Player p = e.getPlayer();
 		Location loc = p.getLocation();
 		World world = p.getWorld();
 		Particle particleName = playerParticle.get(p.getName());
