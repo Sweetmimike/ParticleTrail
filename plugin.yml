@@ -1,0 +1,143 @@
+main: net.sweetmimike.particletrail.Main
+name: ParticleTrail
+version: 1.1
+author: Sweetmimike
+description: A simple plugin that adds some particles trails
+
+commands:
+  pt:
+    description: Open the gui to use particles
+    
+permissions:
+  pt.*:
+    description: Allows you to have all the permissions
+    default: op
+    children:
+      pt.reload: true
+      pt.open: true
+      pt.heart: true
+      pt.flame: true
+      pt.note: true
+      pt.crit: true
+      pt.angryvillager: true
+      pt.barrier: true
+      pt.happyvillager: true
+      pt.cloud: true
+      pt.lava: true
+      pt.totem: true
+      pt.dragon_breath: true
+      pt.blackheart: true
+      pt.dripwater: true
+      pt.enchantment: true
+      pt.endrod: true
+      pt.firework: true
+      pt.magic_crit: true
+      pt.spell: true
+      pt.portal: true
+      pt.slime: true
+      pt.snowball: true
+      pt.witch: true
+      pt.list: true
+      pt.help: true
+      pt.remove: true
+  pt.reload:
+    description: Allows you to reload the config file
+    default: op
+  pt.open:
+    description: Allows you to open the gui
+  pt.list:
+    description: Allows you to see the particles trails available
+  pt.remove:
+    description: Allows you to remove the current particle trail
+    default: true
+  pt.help:
+    description: Allows you to remove the current particle trail
+    default: true
+  pt.flame:
+    description: Allows you to use the flame trail
+    children: 
+      pt.open: true
+  pt.heart:
+    description: Allows you to use the heart trail
+    children: 
+      pt.open: true
+  pt.crit:
+    description: Allows you to use the crit trail
+    children: 
+      pt.open: true
+  pt.angryvillager:
+    description: Allows you to use the angry villager trail
+    children: 
+      pt.open: true
+  pt.note:
+    description: Allows you to use the note trail
+    children: 
+      pt.open: true
+  pt.happyvillager:
+    description: Allows you to use the happy villager trail
+    children: 
+      pt.open: true
+  pt.cloud:
+    description: Allows you to use the cloud trail
+    children: 
+      pt.open: true
+  pt.barrier:
+    description: Allows you to use the barrier trail
+    children: 
+      pt.open: true
+  pt.lava:
+    description: Allows you to use the lava trail
+    children: 
+      pt.open: true
+  pt.totem:
+    description: Allows you to use the totem trail
+    children: 
+      pt.open: true
+  pt.dragon_breath:
+    description: Allows you to use the dragon_breath trail
+    children: 
+      pt.open: true
+  pt.blackheart:
+    description: Allows you to use the blackheart trail
+    children: 
+      pt.open: true
+  pt.dripwater:
+    description: Allows you to use the dripwater trail
+    children: 
+      pt.open: true
+  pt.enchantment:
+    description: Allows you to use the enchantment trail
+    children: 
+      pt.open: true
+  pt.endrod:
+    description: Allows you to use the endrod trail
+    children: 
+      pt.open: true
+  pt.firework:
+    description: Allows you to use the firework trail
+    children: 
+      pt.open: true
+  pt.magic_crit:
+    description: Allows you to use the magic crit trail
+    children: 
+      pt.open: true
+  pt.spell:
+    description: Allows you to use the spell trail
+    children: 
+      pt.open: true
+  pt.portal:
+    description: Allows you to use the portal trail
+    children: 
+      pt.open: true
+  pt.slime:
+    description: Allows you to use the slime trail
+    children: 
+      pt.open: true
+  pt.snowball:
+    description: Allows you to use the snowball trail
+    children: 
+      pt.open: true
+  pt.witch:
+    description: Allows you to use the witch trail
+    children: 
+      pt.open: true

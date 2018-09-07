@@ -1,0 +1,76 @@
+#ParticleTrail version 1.1
+#author : Sweetmimike
+#link : https://www.spigotmc.org/resources/particletrail.60138/
+#to reset this file, just delete it and reload your server
+#thanks for using my plugin, and enjoy !!
+#
+#count - number of particles
+#speed - speed of particles. Example : for flame, the more the speed is, the more the particles will move
+
+particle:
+  flame:
+    count: 1
+    speed: 0.001
+  heart:
+    count: 1
+    speed: 1
+  crit:
+    count: 1
+    speed: 1
+  angryvillager:
+    count: 1
+    speed: 1
+  note:
+    count: 1
+    speed: 1
+  barrier:
+    count: 1
+    speed: 1
+  happyvillager:
+    count: 1
+    speed: 1
+  cloud:
+    count: 1
+    speed: 0.1
+  lava:
+    count: 1
+    speed: 0.001
+  totem:
+    count: 1
+    speed: 0.1
+  dragon_breath:
+    count: 1
+    speed: 0.1
+  blackheart:
+    count: 1
+    speed: 1
+  dripwater:
+    count: 1
+    speed: 1
+  enchantment:
+    count: 2
+    speed: 1
+  endrod:
+    count: 1
+    speed: 0.05
+  firework:
+    count: 1
+    speed: 0.05
+  magic_crit:
+    count: 1
+    speed: 0.25
+  spell:
+    count: 1
+    speed: 1
+  portal:
+    count: 1
+    speed: 0.25
+  slime:
+    count: 1
+    speed: 1
+  snowball:
+    count: 1
+    speed: 1
+  witch:
+    count: 1
+    speed: 1
