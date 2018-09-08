@@ -1,9 +1,13 @@
-#ParticleTrail version 1.1
+#ParticleTrail version 2.0
 #author : Sweetmimike
 #link : https://www.spigotmc.org/resources/particletrail.60138/
 #to reset this file, just delete it and reload your server
 #thanks for using my plugin, and enjoy !!
-#
+
+rotate:
+  radius: 1
+  speed: 0.1
+
 #count - number of particles
 #speed - speed of particles. Example : for flame, the more the speed is, the more the particles will move
 

@@ -40,6 +40,7 @@ permissions:
       pt.list: true
       pt.help: true
       pt.remove: true
+      pt.rotate: true
   pt.reload:
     description: Allows you to reload the config file
     default: op
@@ -53,6 +54,8 @@ permissions:
   pt.help:
     description: Allows you to remove the current particle trail
     default: true
+  pt.rotate:
+    description: Allows you to use rotating particle
   pt.flame:
     description: Allows you to use the flame trail
     children: 
