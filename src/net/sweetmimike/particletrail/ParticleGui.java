@@ -12,9 +12,10 @@ public class ParticleGui {
 
 	private static final String NAME = "§a§lParticle Trail";
 	private Inventory inv;
+	private int size = 54;
 
 
-	public ParticleGui(int size, Player owner) {
+	public ParticleGui(Player owner) {
 		inv = Bukkit.createInventory(owner, size, NAME);
 		createMenu();
 	}
@@ -93,6 +94,9 @@ public class ParticleGui {
 		rename(brewingStandIt, "§8§lWitch");
 
 		ItemStack panel = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte) 0);
+		
+		ItemStack rotateItem = new ItemStack(Material.COMPASS);
+		rename(rotateItem, "§e§lRotating Particle");
 
 		//adding the glass panel
 		for(int i = 0; i < inv.getSize(); i++)
@@ -126,6 +130,7 @@ public class ParticleGui {
 		inv.setItem(33, brewingStandIt);
 		inv.setItem(34, fireworkIt);
 		inv.setItem(37, endRodIt);
+		inv.setItem(53, rotateItem);
 
 
 

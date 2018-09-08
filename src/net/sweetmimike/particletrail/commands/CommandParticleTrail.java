@@ -59,7 +59,7 @@ public class CommandParticleTrail implements CommandExecutor, TabCompleter {
 			 */
 			if(!pInv.containsKey(p.getName())) {
 
-				ParticleGui pGui = new ParticleGui(54, p);
+				ParticleGui pGui = new ParticleGui(p);
 
 				pInv.put(p.getName(), pGui.getInv());
 

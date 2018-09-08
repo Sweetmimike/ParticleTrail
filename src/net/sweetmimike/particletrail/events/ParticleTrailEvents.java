@@ -1,6 +1,8 @@
 package net.sweetmimike.particletrail.events;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.bukkit.Location;
@@ -13,8 +15,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import net.sweetmimike.particletrail.Main;
 import net.sweetmimike.particletrail.ParticleList;
@@ -26,6 +30,7 @@ public class ParticleTrailEvents implements Listener {
 	ParticleList pList;
 	Main main;
 
+	public static List<String> isRotate = new ArrayList<>();
 	public static Map<String, Particle> playerParticle = new HashMap<>();	
 
 	public ParticleTrailEvents(Main main) {
@@ -34,28 +39,69 @@ public class ParticleTrailEvents implements Listener {
 
 	@EventHandler
 	public void onClickMenu(InventoryClickEvent e) {
+
 		Player p = (Player) e.getWhoClicked();
 
 		if(e.getInventory().getName().equalsIgnoreCase("§a§lParticle Trail")) {
 			e.setCancelled(true);
 
+			//le joueur clique sur la boussole et a déjà une particle d'activée
+			if(e.getCurrentItem().getType() == Material.COMPASS && playerParticle.containsKey(p.getName())) {
+				ItemStack compass = e.getCurrentItem();
+				ItemMeta metaCompass = compass.getItemMeta();
+				if(metaCompass.hasEnchants()) {
+					isRotate.remove(p.getName());
+					metaCompass.removeEnchant(Enchantment.DAMAGE_ALL);
+					compass.setItemMeta(metaCompass);
+					return;
+				}
+				metaCompass.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
+				metaCompass.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+				compass.setItemMeta(metaCompass);
+				isRotate.add(p.getName());
+
+
+
+				new BukkitRunnable() {
+					Location loc;
+					World world;
+					@Override
+					public void run() {
+						loc = p.getLocation();
+						world = p.getWorld();
+						String pName = "";
+						for(ParticleList pList : ParticleList.values()) {
+							if(pList.getParticle() == playerParticle.get(p.getName()))
+								pName = pList.getName();
+						}
+						world.spawnParticle(playerParticle.get(p.getName()), loc.getX() + 1, loc.getY() + 0.15, loc.getZ(), main.getConfig().getInt("particle." + pName + ".count"), 0.001, 0.001, 0.001, main.getConfig().getDouble("particle." + pName + ".speed"));
+						if(!(isRotate.contains(p.getName()))) {
+							cancel();
+						}
+
+					}
+				}.runTaskTimer(main, 0, (long)0.5);
+				return;
+			}
+
 			if(e.getCurrentItem() != null && e.getCurrentItem().getType() != Material.AIR) {
 				ItemStack itemClicked = e.getCurrentItem();
 				ItemMeta meta = itemClicked.getItemMeta();
-				for(ParticleList mat : ParticleList.values()) {
+				for(ParticleList particle : ParticleList.values()) {
 					if(meta.hasEnchants() && meta != null) {
 						meta.removeEnchant(Enchantment.DAMAGE_ALL);
 						itemClicked.setItemMeta(meta);
 						p.performCommand("pt reset");
-						
+
 						p.closeInventory();
 						return;
 					}
-						
-					if(mat.getMat() == itemClicked.getType() || mat.getItem() == itemClicked) {
-						p.performCommand("pt " + mat.getName().toLowerCase());
+
+					if(particle.getMat() == itemClicked.getType() || particle.getItem() == itemClicked) {
+						p.performCommand("pt " + particle.getName().toLowerCase());
 						System.out.println();
 						p.closeInventory();
+
 					}
 				}
 			}
@@ -74,27 +120,19 @@ public class ParticleTrailEvents implements Listener {
 				pName = pList.getName();
 		}
 
-		if(playerParticle.containsKey(p.getName())) {
+		if(playerParticle.containsKey(p.getName()) && !(isRotate.contains(p.getName()))) {
 			// test si le joueur bouge d'un block entier
 			if(e.getFrom().getX() != e.getTo().getX() || e.getFrom().getZ() != e.getTo().getZ()) {
 				world.spawnParticle(particleName, loc.getX(), loc.getY() + 0.15, loc.getZ(), main.getConfig().getInt("particle." + pName + ".count"), 0.001, 0.001, 0.001, main.getConfig().getDouble("particle." + pName + ".speed"));
 			}
 		}
 	}
-	
-	public void sendNotifEnable(Player p, String particleName) {
-		p.sendMessage("§2[§aParticleTrail§2] §b" + particleName + " Enable");
-	}
-	
+
 	public Map<String, Particle> getPlayerParticle() {
 		return playerParticle;
 	}
 
 	public void setPlayerParticle(Player player, Particle particle) {
 		playerParticle.put(player.getName(), particle);
-	}
-	
-	public ParticleTrailEvents getInstance() {
-		return this;
 	}
 }
