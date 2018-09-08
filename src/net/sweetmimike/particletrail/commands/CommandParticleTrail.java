@@ -93,7 +93,7 @@ public class CommandParticleTrail implements CommandExecutor, TabCompleter {
 						}
 						list.sort(String.CASE_INSENSITIVE_ORDER);
 						String listToSend = list.toString().replace("[", "").replace("]", "").replace(",", "§r,");
-						p.sendMessage("§2[§aParticleTrail§2] Particle available : " + listToSend);
+						p.sendMessage(Main.PREFIX + " §aParticle available : " + listToSend);
 						return true;
 					} else {
 						p.sendMessage("§4You do not have permission to do that");
@@ -118,9 +118,9 @@ public class CommandParticleTrail implements CommandExecutor, TabCompleter {
 					if(p.hasPermission("pt.remove")) {
 
 						if(!ParticleTrailEvents.playerParticle.containsKey(p.getName())) {
-							p.sendMessage("§2[§aParticleTrail§2] §cYou currently have no particle trail"); return true;
+							p.sendMessage(Main.PREFIX + " §cYou currently have no particle trail"); return true;
 						}
-						p.sendMessage("§2[§aParticleTrail§2] §cParticle trail removed");
+						p.sendMessage(Main.PREFIX + " §cParticle trail removed");
 						ParticleTrailEvents.playerParticle.remove(p.getName());
 						ParticleTrailEvents.isRotate.remove(p.getName());
 						updateEnchantMenu(p);
@@ -131,43 +131,13 @@ public class CommandParticleTrail implements CommandExecutor, TabCompleter {
 					}
 				}
 
-				//					else if(args[0].equalsIgnoreCase("rotate")) {
-				//					new BukkitRunnable() {
-				//						
-				//						
-				//			            double t = 5;
-				//			            double r = 0.5;
-				//						
-				//						@Override
-				//						public void run() {
-				//							Location loc = p.getLocation();
-				//							
-				//							t = t + Math.PI / 16;
-				//			                double x = r * Math.cos(t);
-				//			                double y = 0;
-				//			                double z = r * Math.sin(t);
-				//							Vector vec = new Vector(x, 0, z);
-				//							vec = rotateAroundAxisY(vec, 10);
-				//			                loc.add(vec.getX(), vec.getY(), vec.getZ());
-				//							World world = p.getWorld();
-				//							
-				//							world.spawnParticle(Particle.FLAME, loc.getX(), loc.getY() + 2, loc.getZ(), 1, 0.01, 0.01, 0.01, 0.001);
-				//							 loc.subtract(vec.getX(), vec.getY(), vec.getZ());
-				//							 if (t > Math.PI * 8) {
-				//				                    this.cancel();
-				//				                }
-				//							
-				//						}
-				//					}.runTaskTimer(main, 0, 1);
-				//				}
-
 				//Search if args[0] is a particle name
 				for(ParticleList str : ParticleList.values()) {
 					if(args[0].equalsIgnoreCase(str.getName())) {
 						if(p.hasPermission("pt." + str.getName())) {
 							ParticleTrailEvents.playerParticle.put(p.getName(), str.getParticle());
 							String name = str.getName().substring(0, 1).toUpperCase() + str.getName().substring(1);
-							p.sendMessage("§2[§aParticleTrail§2] §a" + name + " Enable");
+							p.sendMessage(Main.PREFIX + " §a" + name + " Enable");
 
 							//Inv update
 							for(ItemStack is : pInv.get(p.getName()).getContents()) {

@@ -45,56 +45,69 @@ public class ParticleTrailEvents implements Listener {
 		if(e.getInventory().getName().equalsIgnoreCase("§a§lParticle Trail")) {
 			e.setCancelled(true);
 
+			//Rotating particle
 			//le joueur clique sur la boussole et a déjà une particle d'activée
-			if(e.getCurrentItem() != null && e.getCurrentItem().getType() == Material.COMPASS && playerParticle.containsKey(p.getName())) {
-				ItemStack compass = e.getCurrentItem();
-				ItemMeta metaCompass = compass.getItemMeta();
-				if(metaCompass.hasEnchants()) {
-					isRotate.remove(p.getName());
-					metaCompass.removeEnchant(Enchantment.DAMAGE_ALL);
-					compass.setItemMeta(metaCompass);
-					return;
-				}
-				metaCompass.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
-				metaCompass.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-				compass.setItemMeta(metaCompass);
-				isRotate.add(p.getName());
-
-
-
-				new BukkitRunnable() {
-					Location loc;
-					World world;
-					/* ou = math.toRadian(90); */
-					double angle = 2 * Math.PI / 16; 
-					double radius = 1.5;
-					double x;
-					double z;
-					@Override
-					public void run() {
-						loc = p.getLocation();
-						world = p.getWorld();
-						angle += 0.1;
-						x = radius * Math.cos(angle);
-						z = radius * Math.sin(angle);
-						loc.add(x, 1, z);
-						String pName = "";
-						for(ParticleList pList : ParticleList.values()) {
-							if(pList.getParticle() == playerParticle.get(p.getName()))
-								pName = pList.getName();
+			if(e.getCurrentItem() != null && e.getCurrentItem().getType() == Material.COMPASS) {
+				if(p.hasPermission("pt.rotate")) {
+					if(playerParticle.containsKey(p.getName())) {
+						ItemStack compass = e.getCurrentItem();
+						ItemMeta metaCompass = compass.getItemMeta();
+						if(metaCompass.hasEnchants()) {
+							isRotate.remove(p.getName());
+							p.sendMessage(Main.PREFIX + "§cRotating particle disable");
+							metaCompass.removeEnchant(Enchantment.DAMAGE_ALL);
+							compass.setItemMeta(metaCompass);
+							return;
 						}
-						if(playerParticle.containsKey(p.getName())) {
-							world.spawnParticle(playerParticle.get(p.getName()), loc.getX(), loc.getY() + 0.15, loc.getZ(), main.getConfig().getInt("particle." + pName + ".count"), 0.001, 0.001, 0.001, main.getConfig().getDouble("particle." + pName + ".speed"));
-						}
-						loc.subtract(x, 1, z);
-						if(!(isRotate.contains(p.getName()))) {
-							cancel();
-						}
+						metaCompass.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
+						metaCompass.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+						compass.setItemMeta(metaCompass);
+						isRotate.add(p.getName());
+						p.sendMessage(Main.PREFIX + "§aRotating particle enable");
 
+
+						new BukkitRunnable() {
+							Location loc;
+							World world;
+							/* ou = math.toRadian(90); */
+							double angle = 2 * Math.PI / 16; 
+							double radius = 1.5;
+							double x;
+							double z;
+							@Override
+							public void run() {
+								loc = p.getLocation();
+								world = p.getWorld();
+								angle += 0.1;
+								x = radius * Math.cos(angle);
+								z = radius * Math.sin(angle);
+								loc.add(x, 1, z);
+								String pName = "";
+								for(ParticleList pList : ParticleList.values()) {
+									if(pList.getParticle() == playerParticle.get(p.getName()))
+										pName = pList.getName();
+								}
+								if(playerParticle.containsKey(p.getName())) {
+									world.spawnParticle(playerParticle.get(p.getName()), loc.getX(), loc.getY() + 0.15, loc.getZ(), main.getConfig().getInt("particle." + pName + ".count"), 0.001, 0.001, 0.001, main.getConfig().getDouble("particle." + pName + ".speed"));
+								}
+								loc.subtract(x, 1, z);
+								if(!(isRotate.contains(p.getName()))) {
+									cancel();
+								}
+
+							}
+						}.runTaskTimer(main, 0, (long)0.5);
+						return;
+					} else {
+						p.sendMessage(Main.PREFIX + " §cChoose a particle trail before");
+						return;
 					}
-				}.runTaskTimer(main, 0, (long)0.5);
-				return;
-			}
+				} else {
+					p.sendMessage("§4You do not have permission to do that");
+				}
+			} 
+
+
 
 			if(e.getCurrentItem() != null && e.getCurrentItem().getType() != Material.AIR) {
 				ItemStack itemClicked = e.getCurrentItem();

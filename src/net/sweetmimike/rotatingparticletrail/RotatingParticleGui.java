@@ -9,7 +9,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class RotatingParticleGui {
 
-	private static final String NAME = "§a§lRotating Particle Trail";
+	public static final String NAME = "§a§lRotating Particle Trail";
 	private Inventory inv;
 
 
