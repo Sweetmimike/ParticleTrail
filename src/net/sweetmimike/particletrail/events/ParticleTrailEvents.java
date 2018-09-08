@@ -46,7 +46,7 @@ public class ParticleTrailEvents implements Listener {
 			e.setCancelled(true);
 
 			//le joueur clique sur la boussole et a déjà une particle d'activée
-			if(e.getCurrentItem().getType() == Material.COMPASS && playerParticle.containsKey(p.getName())) {
+			if(e.getCurrentItem() != null && e.getCurrentItem().getType() == Material.COMPASS && playerParticle.containsKey(p.getName())) {
 				ItemStack compass = e.getCurrentItem();
 				ItemMeta metaCompass = compass.getItemMeta();
 				if(metaCompass.hasEnchants()) {
@@ -65,16 +65,28 @@ public class ParticleTrailEvents implements Listener {
 				new BukkitRunnable() {
 					Location loc;
 					World world;
+					/* ou = math.toRadian(90); */
+					double angle = 2 * Math.PI / 16; 
+					double radius = 1.5;
+					double x;
+					double z;
 					@Override
 					public void run() {
 						loc = p.getLocation();
 						world = p.getWorld();
+						angle += 0.1;
+						x = radius * Math.cos(angle);
+						z = radius * Math.sin(angle);
+						loc.add(x, 1, z);
 						String pName = "";
 						for(ParticleList pList : ParticleList.values()) {
 							if(pList.getParticle() == playerParticle.get(p.getName()))
 								pName = pList.getName();
 						}
-						world.spawnParticle(playerParticle.get(p.getName()), loc.getX() + 1, loc.getY() + 0.15, loc.getZ(), main.getConfig().getInt("particle." + pName + ".count"), 0.001, 0.001, 0.001, main.getConfig().getDouble("particle." + pName + ".speed"));
+						if(playerParticle.containsKey(p.getName())) {
+							world.spawnParticle(playerParticle.get(p.getName()), loc.getX(), loc.getY() + 0.15, loc.getZ(), main.getConfig().getInt("particle." + pName + ".count"), 0.001, 0.001, 0.001, main.getConfig().getDouble("particle." + pName + ".speed"));
+						}
+						loc.subtract(x, 1, z);
 						if(!(isRotate.contains(p.getName()))) {
 							cancel();
 						}

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -121,6 +122,7 @@ public class CommandParticleTrail implements CommandExecutor, TabCompleter {
 						}
 						p.sendMessage("§2[§aParticleTrail§2] §cParticle trail removed");
 						ParticleTrailEvents.playerParticle.remove(p.getName());
+						ParticleTrailEvents.isRotate.remove(p.getName());
 						updateEnchantMenu(p);
 						return true;
 					} else {
@@ -169,15 +171,16 @@ public class CommandParticleTrail implements CommandExecutor, TabCompleter {
 
 							//Inv update
 							for(ItemStack is : pInv.get(p.getName()).getContents()) {
-								ItemMeta meta = is.getItemMeta();
-								meta.removeEnchant(Enchantment.DAMAGE_ALL);
-								is.setItemMeta(meta);
-								if(str.getMat() == is.getType()) {
-									meta.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
-									meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+								if(is.getType() != Material.COMPASS) {
+									ItemMeta meta = is.getItemMeta();
+									meta.removeEnchant(Enchantment.DAMAGE_ALL);
 									is.setItemMeta(meta);
+									if(str.getMat() == is.getType()) {
+										meta.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
+										meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+										is.setItemMeta(meta);
 
-
+									}
 								}
 
 							}
@@ -220,9 +223,11 @@ public class CommandParticleTrail implements CommandExecutor, TabCompleter {
 
 	public void updateEnchantMenu(Player p) {
 		for(ItemStack is : pInv.get(p.getName()) ) {
-			ItemMeta meta = is.getItemMeta();
-			meta.removeEnchant(Enchantment.DAMAGE_ALL);
-			is.setItemMeta(meta);
+			if(is.getType() != Material.COMPASS) {
+				ItemMeta meta = is.getItemMeta();
+				meta.removeEnchant(Enchantment.DAMAGE_ALL);
+				is.setItemMeta(meta);
+			}
 		}
 	}
 
