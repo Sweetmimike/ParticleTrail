@@ -71,14 +71,14 @@ public class ParticleTrailEvents implements Listener {
 							World world;
 							/* ou = math.toRadian(90); */
 							double angle = 2 * Math.PI / 16; 
-							double radius = 1.5;
+							double radius = main.getConfig().getDouble("rotate.radius");
 							double x;
 							double z;
 							@Override
 							public void run() {
 								loc = p.getLocation();
 								world = p.getWorld();
-								angle += 0.1;
+								angle += main.getConfig().getDouble("rotate.speed");
 								x = radius * Math.cos(angle);
 								z = radius * Math.sin(angle);
 								loc.add(x, 1, z);
