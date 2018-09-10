@@ -54,7 +54,7 @@ public class ParticleTrailEvents implements Listener {
 						ItemMeta metaCompass = compass.getItemMeta();
 						if(metaCompass.hasEnchants()) {
 							isRotate.remove(p.getName());
-							p.sendMessage(Main.PREFIX + "§cRotating particle disable");
+							p.sendMessage(Main.PREFIX + " §cRotating particle disable");
 							metaCompass.removeEnchant(Enchantment.DAMAGE_ALL);
 							compass.setItemMeta(metaCompass);
 							return;
@@ -63,7 +63,7 @@ public class ParticleTrailEvents implements Listener {
 						metaCompass.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 						compass.setItemMeta(metaCompass);
 						isRotate.add(p.getName());
-						p.sendMessage(Main.PREFIX + "§aRotating particle enable");
+						p.sendMessage(Main.PREFIX + " §aRotating particle enable");
 
 
 						new BukkitRunnable() {
