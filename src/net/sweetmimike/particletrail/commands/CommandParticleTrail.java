@@ -193,12 +193,12 @@ public class CommandParticleTrail implements CommandExecutor, TabCompleter {
 
 	public void updateEnchantMenu(Player p) {
 		for(ItemStack is : pInv.get(p.getName()) ) {
-			if(is.getType() != Material.COMPASS) {
+			
 				ItemMeta meta = is.getItemMeta();
 				meta.removeEnchant(Enchantment.DAMAGE_ALL);
 				is.setItemMeta(meta);
 			}
-		}
+		
 	}
 
 	@Override
