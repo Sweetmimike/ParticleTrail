@@ -47,29 +47,29 @@ public class ParticleGui {
 		ItemStack elytraIt = new ItemStack(Material.ELYTRA);
 		rename(elytraIt, "§f§lCloud");
 
-		ItemStack totemIt = new ItemStack(Material.TOTEM);
+		ItemStack totemIt = new ItemStack(Material.TOTEM_OF_UNDYING);
 		rename(totemIt, "§5§lTotem");
 
-		ItemStack dragonSkullIt = new ItemStack(Material.SKULL_ITEM, 1, (byte)5);
+		ItemStack dragonSkullIt = new ItemStack(Material.DRAGON_HEAD);
 		rename(dragonSkullIt, "§1§lDragonBreath");
 
 		ItemStack lavaBucketIt = new ItemStack(Material.LAVA_BUCKET);
 		rename(lavaBucketIt, "§c§lLava");
 
 		//
-		ItemStack witherSkullIt = new ItemStack(Material.SKULL_ITEM, 1, (byte)1);
+		ItemStack witherSkullIt = new ItemStack(Material.WITHER_SKELETON_SKULL);
 		rename(witherSkullIt, "§0§lWither");
 
 		ItemStack waterBucketIt = new ItemStack(Material.WATER_BUCKET);
 		rename(waterBucketIt, "§3§lWater");
 
-		ItemStack enchantmentTableIt = new ItemStack(Material.ENCHANTMENT_TABLE);
+		ItemStack enchantmentTableIt = new ItemStack(Material.ENCHANTING_TABLE);
 		rename(enchantmentTableIt, "§2§lEnchantment");
 
 		ItemStack endRodIt = new ItemStack(Material.END_ROD);
 		rename(endRodIt, "§d§lEnd Rod");
 
-		ItemStack fireworkIt = new ItemStack(Material.FIREWORK);
+		ItemStack fireworkIt = new ItemStack(Material.FIREWORK_ROCKET);
 		rename(fireworkIt, "§1§lFirework");
 
 		ItemStack diamondSwordIt = new ItemStack(Material.DIAMOND_SWORD);
@@ -87,13 +87,13 @@ public class ParticleGui {
 		ItemStack slimeballIt = new ItemStack(Material.SLIME_BALL);
 		rename(slimeballIt, "§a§lSlime");
 
-		ItemStack snowballIt = new ItemStack(Material.SNOW_BALL);
+		ItemStack snowballIt = new ItemStack(Material.SNOWBALL);
 		rename(snowballIt, "§f§lSnowball");
 
-		ItemStack brewingStandIt = new ItemStack(Material.BREWING_STAND_ITEM);
+		ItemStack brewingStandIt = new ItemStack(Material.BREWING_STAND);
 		rename(brewingStandIt, "§8§lWitch");
 
-		ItemStack panel = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte) 0);
+		ItemStack panel = new ItemStack(Material.WHITE_STAINED_GLASS_PANE);
 		
 		ItemStack rotateItem = new ItemStack(Material.COMPASS);
 		rename(rotateItem, "§e§lRotating Particle");

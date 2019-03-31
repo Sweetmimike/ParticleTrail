@@ -19,21 +19,21 @@ public enum ParticleList {
 	CLOUD("cloud", Particle.CLOUD, Material.ELYTRA),
 	LAVA("lava", Particle.LAVA, Material.LAVA_BUCKET),
 	
-	TOTEM("totem", Particle.TOTEM, Material.TOTEM),
-	DRAGON_BREATH("dragon_breath", Particle.DRAGON_BREATH, new ItemStack(Material.SKULL_ITEM, 1, (byte)5)),
+	TOTEM("totem", Particle.TOTEM, Material.TOTEM_OF_UNDYING),
+	DRAGON_BREATH("dragon_breath", Particle.DRAGON_BREATH, Material.DRAGON_HEAD),
 	
 	//3eme ajout
-	BLACKHEART("blackheart", Particle.DAMAGE_INDICATOR, new ItemStack(Material.SKULL_ITEM, 1, (byte)1)),
+	BLACKHEART("blackheart", Particle.DAMAGE_INDICATOR, Material.WITHER_SKELETON_SKULL),
 	DRIP_WATER("dripwater", Particle.DRIP_WATER, Material.WATER_BUCKET),
-	ENCHANTMENT("enchantment", Particle.ENCHANTMENT_TABLE, Material.ENCHANTMENT_TABLE),
+	ENCHANTMENT("enchantment", Particle.ENCHANTMENT_TABLE, Material.ENCHANTING_TABLE),
 	END_ROD("endrod", Particle.END_ROD, Material.END_ROD),
-	FIREWORK("firework", Particle.FIREWORKS_SPARK, Material.FIREWORK),
+	FIREWORK("firework", Particle.FIREWORKS_SPARK, Material.FIREWORK_ROCKET),
 	MAGIC_CRIT("magic_crit", Particle.CRIT_MAGIC, Material.DIAMOND_SWORD),
 	SPELL("spell", Particle.SPELL, Material.POTION),
 	PORTAL("portal", Particle.PORTAL, Material.ENDER_PEARL),
 	SLIME("slime", Particle.SLIME, Material.SLIME_BALL),
-	SNOWBALL("snowball", Particle.SNOWBALL, Material.SNOW_BALL),
-	WITCH("witch", Particle.SPELL_WITCH, Material.BREWING_STAND_ITEM),
+	SNOWBALL("snowball", Particle.SNOWBALL, Material.SNOWBALL),
+	WITCH("witch", Particle.SPELL_WITCH, Material.BREWING_STAND),
 	
 	
 	;
