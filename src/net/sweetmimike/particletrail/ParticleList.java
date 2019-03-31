@@ -19,7 +19,7 @@ public enum ParticleList {
 	CLOUD("cloud", Particle.CLOUD, Material.ELYTRA),
 	LAVA("lava", Particle.LAVA, Material.LAVA_BUCKET),
 	
-	TOTEM("totem", Particle.TOTEM, Material.TOTEM_OF_UNDYING),
+	TOTEM("totem", Particle.TOTEM, Material.LEGACY_TOTEM),
 	DRAGON_BREATH("dragon_breath", Particle.DRAGON_BREATH, Material.DRAGON_HEAD),
 	
 	//3eme ajout

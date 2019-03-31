@@ -47,7 +47,7 @@ public class ParticleGui {
 		ItemStack elytraIt = new ItemStack(Material.ELYTRA);
 		rename(elytraIt, "§f§lCloud");
 
-		ItemStack totemIt = new ItemStack(Material.TOTEM_OF_UNDYING);
+		ItemStack totemIt = new ItemStack(Material.LEGACY_TOTEM);
 		rename(totemIt, "§5§lTotem");
 
 		ItemStack dragonSkullIt = new ItemStack(Material.DRAGON_HEAD);
